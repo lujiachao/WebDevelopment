@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <DocumentationFile>D:\my-wd-write-test\core2.1\WD.Core\WD.Core\WD.API.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Other\" />
+    <Folder Include="Result\" />
+    <Folder Include="wwwroot\" />
+    <Folder Include="Dispatch\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="3.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nereus\Nereus.csproj" />
+    <ProjectReference Include="..\WD.Common\WD.Common.csproj" />
+    <ProjectReference Include="..\WD.SQL\WD.SQL.csproj" />
+    <ProjectReference Include="..\Zeus\Zeus.csproj" />
+  </ItemGroup>
+
+</Project>
