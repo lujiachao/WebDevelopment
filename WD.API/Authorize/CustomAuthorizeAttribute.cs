@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System;
 using System.Threading.Tasks;
 
 namespace WD.API.Authorize
@@ -20,5 +21,12 @@ namespace WD.API.Authorize
     ///</summary>
     public class customAuthorizeAttribute : AuthorizeAttribute
     {
+    }
+
+    public class TestAuthorizationAttribute : Attribute,IAuthorizationFilter
+    {
+        public void OnAuthorization(AuthorizationFilterContext context)
+        {
+        }
     }
 }
