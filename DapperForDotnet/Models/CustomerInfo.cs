@@ -14,7 +14,7 @@ namespace DapperForDotnet.Models
         //ExplicitKey：指定此列为非自动增长主键（例如guid，字符串列）
         //Computed：计算属性，此列不作为更新
         //Write：指定列是否可写
-        [ExplicitKey] //非自增长的用此标识
+        [Key] //自增长的用此标识
         public virtual string ID { get; set; }
         public virtual string Name { get; set; }
 

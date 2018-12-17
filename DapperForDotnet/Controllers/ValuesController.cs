@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DapperForDotnet.DAL;
+using DapperForDotnet.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DapperForDotnet.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET api/values
-        [HttpGet]
+       // GET api/values
+       [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
             return new string[] { "value1", "value2" };
@@ -24,8 +26,15 @@ namespace DapperForDotnet.Controllers
             return "value";
         }
 
-        // POST api/values
-        [HttpPost]
+        [HttpGet]
+        public ActionResult<string> GetTableName()
+        {
+            string TableName = EntityHelper.CallName<CustomerInfo>();
+            return TableName;
+        }
+
+        //POST api/values
+       [HttpPost]
         public void Post([FromBody] string value)
         {
         }

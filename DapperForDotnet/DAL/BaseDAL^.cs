@@ -121,7 +121,7 @@ namespace DapperForDotnet.Dal
         {
             using (IDbConnection dbConnection = Connection)
             {
-                string query = string.Format("DELETE FROM {0} WHERE {1} = @id", TableName, PrimaryKey.Name);
+                string query = string.Format("DELETE FROM {0} WHERE id = @id", TableName);
                 var parameters = new DynamicParameters();
                 parameters.Add("@id", id);
 

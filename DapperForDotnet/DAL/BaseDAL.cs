@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
 using DapperForDotnet.Common.Connection;
+using DapperForDotnet.DAL;
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
@@ -21,12 +22,12 @@ namespace DapperForDotnet.Dal
         /// <summary>
         /// 主键属性对象
         /// </summary>
-        public PropertyInfo PrimaryKey { get; set; }
+        //public PropertyInfo PrimaryKey { get; set; }
 
         public BaseDAL()
         {
-            this.TableName = EntityHelper.GetTableName(typeof(T));
-            this.PrimaryKey = EntityHelper.GetSingleKey<T>();
+            this.TableName = EntityHelper.CallName<T>();
+            //this.PrimaryKey = EntityHelper.GetSingleKey<T>();
         }
 
         /// <summary>
@@ -163,7 +164,7 @@ namespace DapperForDotnet.Dal
             bool result = false;
             using (IDbConnection dbConnection = Connection)
             {
-                string query = string.Format("DELETE FROM {0} WHERE {1} = @id", TableName, PrimaryKey.Name);
+                string query = string.Format("DELETE FROM {0} WHERE id = @id", TableName);
                 var parameters = new DynamicParameters();
                 parameters.Add("@id", id);
 
