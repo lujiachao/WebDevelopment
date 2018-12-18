@@ -51,7 +51,7 @@ namespace DapperForDotnet.Common.Connection
                 database = "mysql";//默认配置
             }
             //var jsonConfigurationHelper = JsonConfigurationHelper.GetAppSettings<ConnectionStrings>("ConnectionStrings");
-            var strConn = JsonConfigurationHelper.GetAppSettingSingle("ConnectionString:" + database);
+            var strConn = JsonConfigurationHelper.GetAppSettingSingle("ConnectionStrings:" + database);
             switch (dbType)
             {
                 case DatabaseType.SqlServer:

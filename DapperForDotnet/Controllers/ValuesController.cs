@@ -3,6 +3,7 @@ using DapperForDotnet.DAL;
 using DapperForDotnet.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace DapperForDotnet.Controllers
 {
@@ -50,11 +51,21 @@ namespace DapperForDotnet.Controllers
         }
 
         [HttpGet]
-        public ActionResult<string> GetAll()
+        public IEnumerable<CustomerInfo> GetAll()
         {
             CustomerDAL customer = new CustomerDAL();
             var list = customer.GetAll();
-            return  list.ToString();
+            return list;
+        }
+
+        [HttpGet]
+        public async Task<bool> InsertOne()
+        {
+            CustomerDAL customer = new CustomerDAL();
+            var insertInfo = new CustomerInfo() { Name = "test", Age = 30, Creator = "test" };
+            var insertList = new List<CustomerInfo>() { insertInfo };
+            var flag = customer.Insert(insertList);
+            return flag;
         }
     }
 }
