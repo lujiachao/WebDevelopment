@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DapperForDotnet.Dal;
 using DapperForDotnet.DAL;
 using DapperForDotnet.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace DapperForDotnet.Controllers
 {
@@ -49,6 +47,14 @@ namespace DapperForDotnet.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        [HttpGet]
+        public ActionResult<string> GetAll()
+        {
+            CustomerDAL customer = new CustomerDAL();
+            var list = customer.GetAll();
+            return list.ToString();
         }
     }
 }
