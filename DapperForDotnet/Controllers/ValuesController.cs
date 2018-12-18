@@ -54,7 +54,7 @@ namespace DapperForDotnet.Controllers
         {
             CustomerDAL customer = new CustomerDAL();
             var list = customer.GetAll();
-            return list.ToString();
+            return  list.ToString();
         }
     }
 }
