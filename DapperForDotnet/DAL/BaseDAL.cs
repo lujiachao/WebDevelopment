@@ -14,6 +14,7 @@ namespace DapperForDotnet.Dal
     /// <typeparam name="T"></typeparam>
     public partial class BaseDAL<T> where T : class
     {
+        private ConnectionFactory connectionFactory = new ConnectionFactory();
         /// <summary>
         /// 对象的表名
         /// </summary>
@@ -37,7 +38,7 @@ namespace DapperForDotnet.Dal
         {
             get
             {
-                var connection = ConnectionFactory.CreateConnection();
+                var connection = connectionFactory.CreateConnection();
                 connection.Open();
                 return connection;
             }

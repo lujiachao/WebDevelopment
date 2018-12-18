@@ -4,10 +4,11 @@ using DapperForDotnet.JsonHelper;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Data;
+using System.Threading.Tasks;
 
 namespace DapperForDotnet.Common.Connection
 {
-    public class ConnectionFactory
+    public class ConnectionFactory : IConnectionFactory
     {
         //获取配置文件信息
         //public static IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
@@ -18,7 +19,7 @@ namespace DapperForDotnet.Common.Connection
         /// </summary>
         /// <param name="databaseType">数据库类型</param>
         /// <returns>DatabaseType</returns>
-        private static DatabaseType GetDataBaseType(string databaseType)
+        public DatabaseType GetDataBaseType(string databaseType)
         {
             DatabaseType returnValue = DatabaseType.MySql;
             foreach (DatabaseType dbType in Enum.GetValues(typeof(DatabaseType)))
@@ -36,7 +37,7 @@ namespace DapperForDotnet.Common.Connection
         ///获取数据库连接
         ///</summary>
         ///<return>IDbConnection</return> 
-        public static IDbConnection CreateConnection()
+        public IDbConnection CreateConnection()
         {
             IDbConnection connection = null;
 
