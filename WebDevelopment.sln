@@ -35,7 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Privilege", "Privilege", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dapper.Dotnet", "Dapper.Dotnet", "{CF6A75A2-992B-4671-93CF-1BD09485A863}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperForDotnet", "DapperForDotnet\DapperForDotnet.csproj", "{FE967A34-6921-451D-8C70-C8E8CC8D8FA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperForDotnet", "DapperForDotnet\DapperForDotnet.csproj", "{FE967A34-6921-451D-8C70-C8E8CC8D8FA5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrivilegeManagement", "PrivilegeManagement\PrivilegeManagement.csproj", "{1108B956-2152-4812-A2D4-2502BDA797EB}"
 EndProject

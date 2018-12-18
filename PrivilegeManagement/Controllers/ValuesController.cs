@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DapperForDotnet.Dal;
 using Microsoft.AspNetCore.Mvc;
+using PrivilegeManagement.Models;
 
 namespace PrivilegeManagement.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
@@ -40,6 +42,16 @@ namespace PrivilegeManagement.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+
+        [HttpGet]
+        public async Task<bool> InsertOne()
+        {
+            CustomerDAL customer = new CustomerDAL();
+            var insertInfo = new CustomerInfo() { Name = "test", Age = 30, Creator = "test" };
+            var insertList = new List<CustomerInfo>() { insertInfo };
+            var flag = customer.Insert(insertList);
+            return flag;
         }
     }
 }

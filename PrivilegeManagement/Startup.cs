@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using PrivilegeManagement.Core;
 using PrivilegeManagement.MiddleWare;
 using Swashbuckle.AspNetCore.Swagger;
 
@@ -45,6 +46,7 @@ namespace PrivilegeManagement
                 c.IncludeXmlComments(xmlPath, true); //默认第二个参数是false,这个是controller的注释，记得修改
             });
             #endregion
+            services.AddTransient<IConnectionFactory, ConnectionFactory>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
