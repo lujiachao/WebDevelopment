@@ -1,9 +1,12 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
+using MyDapper.Connection;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 
-namespace PrivilegeManagement.Core
+namespace MyDapper.SqlPower
 {
     /// <summary>
     /// 数据库访问基类 同步方法

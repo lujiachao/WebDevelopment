@@ -1,7 +1,11 @@
-﻿using System;
+﻿using MyDapper.Connection.MyEnum;
+using MyDapper.JsonHelper;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Text;
 
-namespace PrivilegeManagement.Core
+namespace MyDapper.Connection
 {
     public class ConnectionFactory : IConnectionFactory
     {
@@ -58,7 +62,7 @@ namespace PrivilegeManagement.Core
                     break;
                 case DatabaseType.Oracle:
                     connection = new Oracle.ManagedDataAccess.Client.OracleConnection(strConn);
-                //  connection = new System.Data.OracleClient.OracleConnection(strConn);
+                    //  connection = new System.Data.OracleClient.OracleConnection(strConn);
                     break;
                 default:
                     connection = null;

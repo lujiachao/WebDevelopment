@@ -1,16 +1,13 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 
-namespace PrivilegeManagement.Core
+namespace MyDapper.JsonHelper
 {
-    public class JsonConfigurationHelper
+    public static class JsonConfigurationHelper
     {
-        public static string baseDirectory = AppContext.BaseDirectory;
+        public static string baseDirectory = Directory.GetCurrentDirectory();
         public static T GetAppSettings<T>(string key) where T : class, new()
         {
             IConfiguration config = new ConfigurationBuilder()

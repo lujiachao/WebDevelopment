@@ -1,4 +1,4 @@
-﻿using PrivilegeManagement.Core;
+﻿using MyDapper.SqlPower;
 using PrivilegeManagement.Models;
 
 namespace DapperForDotnet.Dal

@@ -39,6 +39,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperForDotnet", "DapperFo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrivilegeManagement", "PrivilegeManagement\PrivilegeManagement.csproj", "{1108B956-2152-4812-A2D4-2502BDA797EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyDapper", "MyDapper\MyDapper.csproj", "{49CDF5AF-7B50-4CC5-BB29-6EA02597F116}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{1108B956-2152-4812-A2D4-2502BDA797EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1108B956-2152-4812-A2D4-2502BDA797EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1108B956-2152-4812-A2D4-2502BDA797EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49CDF5AF-7B50-4CC5-BB29-6EA02597F116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49CDF5AF-7B50-4CC5-BB29-6EA02597F116}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49CDF5AF-7B50-4CC5-BB29-6EA02597F116}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49CDF5AF-7B50-4CC5-BB29-6EA02597F116}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +107,7 @@ Global
 		{850D327D-0A6E-4217-957F-F6AEEDECDB8B} = {CE6D5A81-1ACC-4CB3-821E-37473EA16C1A}
 		{FE967A34-6921-451D-8C70-C8E8CC8D8FA5} = {CF6A75A2-992B-4671-93CF-1BD09485A863}
 		{1108B956-2152-4812-A2D4-2502BDA797EB} = {56178A4F-6C48-4E14-85AE-89A43B648A88}
+		{49CDF5AF-7B50-4CC5-BB29-6EA02597F116} = {20D06291-4318-4C10-B0DD-4405976BE505}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54B688B2-DE83-4D9C-90EF-3FC7DDFDF9FB}

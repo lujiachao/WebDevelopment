@@ -1,14 +1,16 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace PrivilegeManagement.Core
+namespace MyDapper.SqlPower
 {
     public partial class BaseDAL<T> where T : class
     {
-         /// <summary>
+        /// <summary>
         /// 返回数据库所有的对象集合
         /// </summary>
         /// <returns></returns>

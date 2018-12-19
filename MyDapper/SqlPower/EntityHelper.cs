@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace PrivilegeManagement.Core
+namespace MyDapper.SqlPower
 {
     public static class EntityHelper
     {
         public static bool IsInterface(this Type type) =>
-        #if NETSTANDARD1_3 || NETCOREAPP1_0
+#if NETSTANDARD1_3 || NETCOREAPP1_0
             type.GetTypeInfo().IsInterface;
-        #else
+#else
             type.IsInterface;
-        #endif
+#endif
 
         /// <summary>
         /// 获取实体映射表名
