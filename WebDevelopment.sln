@@ -39,7 +39,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperForDotnet", "DapperFo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PrivilegeManagement", "PrivilegeManagement\PrivilegeManagement.csproj", "{1108B956-2152-4812-A2D4-2502BDA797EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyDapper", "MyDapper\MyDapper.csproj", "{49CDF5AF-7B50-4CC5-BB29-6EA02597F116}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyDapper", "MyDapper\MyDapper.csproj", "{49CDF5AF-7B50-4CC5-BB29-6EA02597F116}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DotNetCore.MiddleWare", "DotNetCore.MiddleWare", "{385B8700-8873-4659-AE98-335D735ABE18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

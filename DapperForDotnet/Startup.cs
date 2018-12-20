@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DapperForDotnet.Common.Connection;
+using DapperForDotnet.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,14 +32,18 @@ namespace DapperForDotnet
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
+                loggerFactory.AddConsole(minLevel: LogLevel.Information);  //在控制台输出日志
+                app.UseRequestIP(); //使用中间件
                 app.UseDeveloperExceptionPage();
             }
             else
             {
+                loggerFactory.AddConsole(minLevel: LogLevel.Information);
+                app.UseRequestIP(); //使用中间件
                 app.UseHsts();
             }
 
