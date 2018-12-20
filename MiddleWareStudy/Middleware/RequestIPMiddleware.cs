@@ -2,20 +2,17 @@
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
-namespace DapperForDotnet.Middleware
+namespace MiddleWareStudy.Middleware
 {
-    /// <summary>
-    /// 请求IP中间件
-    /// </summary>
-    public class RequestIPMiddlewre
+    public class RequestIPMiddleware
     {
         private readonly RequestDelegate _next; //定义请求委托
         private readonly ILogger _logger; //定义日志
 
-        public RequestIPMiddlewre(RequestDelegate next, ILoggerFactory loggerFactory)
+        public RequestIPMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
         {
             _next = next;
-            _logger = loggerFactory.CreateLogger<RequestIPMiddlewre>();
+            _logger = loggerFactory.CreateLogger<RequestIPMiddleware>();
         }
 
         ///<summary>
@@ -26,10 +23,11 @@ namespace DapperForDotnet.Middleware
         /// <returns>Task(void)</returns>
         public async Task Invoke(HttpContext context)
         {
-            string ip = context.Connection.RemoteIpAddress.ToString();
-            _logger.LogInformation($"User IP:{ip}");
+            //string ip = context.Connection.RemoteIpAddress.ToString();
+            //_logger.LogInformation($"User IP:{ip}");
+            GetIp getIp = new GetIp();
+            await getIp.WriteIp(context, _logger);
             await _next.Invoke(context);
         }
-        
     }
 }

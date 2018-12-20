@@ -43,6 +43,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyDapper", "MyDapper\MyDapp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DotNetCore.MiddleWare", "DotNetCore.MiddleWare", "{385B8700-8873-4659-AE98-335D735ABE18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiddleWareStudy", "MiddleWareStudy\MiddleWareStudy.csproj", "{B495314B-EF30-4453-9DB0-9580181BD1BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,10 @@ Global
 		{49CDF5AF-7B50-4CC5-BB29-6EA02597F116}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49CDF5AF-7B50-4CC5-BB29-6EA02597F116}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49CDF5AF-7B50-4CC5-BB29-6EA02597F116}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B495314B-EF30-4453-9DB0-9580181BD1BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B495314B-EF30-4453-9DB0-9580181BD1BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B495314B-EF30-4453-9DB0-9580181BD1BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B495314B-EF30-4453-9DB0-9580181BD1BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +116,7 @@ Global
 		{FE967A34-6921-451D-8C70-C8E8CC8D8FA5} = {CF6A75A2-992B-4671-93CF-1BD09485A863}
 		{1108B956-2152-4812-A2D4-2502BDA797EB} = {56178A4F-6C48-4E14-85AE-89A43B648A88}
 		{49CDF5AF-7B50-4CC5-BB29-6EA02597F116} = {20D06291-4318-4C10-B0DD-4405976BE505}
+		{B495314B-EF30-4453-9DB0-9580181BD1BA} = {385B8700-8873-4659-AE98-335D735ABE18}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54B688B2-DE83-4D9C-90EF-3FC7DDFDF9FB}
