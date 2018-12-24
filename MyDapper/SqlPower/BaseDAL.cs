@@ -196,5 +196,128 @@ namespace MyDapper.SqlPower
             }
             return result;
         }
+        /// <summary>
+        /// 执行SQL返回第一行第一列结果
+        /// </summary>
+        public virtual TT ExecuteScalar<TT>(string commandText, object parameters, CommandType commandType = CommandType.Text, int? commandTimeout = default(int?))
+        {
+            using (IDbConnection dbConnection = Connection)
+            {
+                var result = ExecuteScalar<TT>(dbConnection, commandText, parameters, commandType, commandTimeout);
+                dbConnection.Close();
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// 执行SQL返回第一行第一列的结果 多用于事务
+        /// </summary>
+        public virtual TT ExecuteScalar<TT>(IDbConnection dbConnection, string commandText, object parameters, CommandType commandType = CommandType.Text, int? commandTimeout = default(int?))
+        {
+            return dbConnection.ExecuteScalar<TT>(commandText, parameters, null, commandTimeout, commandType);
+        }
+
+        /// <summary>
+        /// 执行SQL返回影响行数
+        /// </summary>
+        public virtual int Execute(string commandText, object parameters, CommandType commandType = CommandType.Text, int? commandTimeout = default(int?))
+        {
+            using (var dbConnection = Connection)
+            {
+                var result = Execute(dbConnection, commandText, parameters, commandType, commandTimeout);
+                dbConnection.Close();
+                return result;
+            }
+        }
+
+        ///<summary>
+        ///执行SQL返回影响行数 多用于事务
+        /// </summary>
+        public virtual int Execute(IDbConnection dbConnection, string commandText, object parameters, CommandType commandType = CommandType.Text, int? commandTimeout = default(int?))
+        {
+            return dbConnection.Execute(commandText, parameters, null, commandTimeout, commandType);
+        }
+
+        /// <summary>
+        /// 查询多行数据
+        /// </summary>
+        public virtual IEnumerable<TT> Query<TT>(string commandText, object parameters, CommandType commandType = CommandType.Text, int? commandTimeout = default(int?)) where TT : class
+        {
+            using (var dbConnection = Connection)
+            {
+                return Query<TT>(dbConnection, commandText, parameters, commandType, commandTimeout);
+            }
+        }
+
+
+        /// <summary>
+        /// 查询多行数据,多用于事务
+        /// </summary>
+        public virtual IEnumerable<TT> Query<TT>(IDbConnection dbConnection, string commandText, object parameters, CommandType commandType = CommandType.Text, int? commandTimeout = null) where TT : class
+        {
+            var result = dbConnection.Query<TT>(commandText, parameters, null, commandTimeout: commandTimeout, commandType: commandType);
+            dbConnection.Close();
+            return result;
+        }
+
+        ///<summary>
+        /// 查询单条记录 (查询出多条会抛出异常，需要处理)
+        /// </summary>
+        public virtual TT QueryOne<TT>(string commandText, object parameters, CommandType commandType = CommandType.Text, int? commandTimeout = default(int?)) where TT : class
+        {
+            using (var dbConnection = Connection)
+            {
+                var result = dbConnection.QuerySingleOrDefault<TT>(commandText, parameters, null, commandTimeout, commandType);
+                dbConnection.Close();
+                return result;
+            }
+        }
+
+        ///<summary>
+        /// 查询单条记录 (查询出多条会抛出异常，需要处理)多用于数据库
+        /// </summary>
+        public virtual TT QueryOne<TT>(IDbConnection dbConnection, string commandText, object parameters, CommandType commandType = CommandType.Text, int? commandTimeout = default(int?)) where TT : class
+        {
+            var result = dbConnection.QuerySingleOrDefault<TT>(commandText, parameters, null, commandTimeout, commandType);
+            return result;
+        }
+
+        /// <summary>
+        /// 批量数据插入操作
+        /// </summary>
+        public virtual int BatchInsert<TT>(string commandText, IEnumerable<TT> sons) where TT : class
+        {
+            using (var dbConnection = Connection)
+            {
+                var result = BatchInsert<TT>(dbConnection, commandText, sons);
+                dbConnection.Close();
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// 批量数据插入操作 多用于事务
+        /// </summary>
+        public virtual int BatchInsert<TT>(IDbConnection dbConnection, string commandText, IEnumerable<TT> sons) where TT : class
+        {
+            return dbConnection.Execute(commandText, sons);
+        }
+
+        /// <summary>
+        /// 返回多组数据结果
+        /// </summary>
+        public virtual Tuple<IEnumerable<TFirst>, IEnumerable<TSecond>> FindMultiple<TFirst, TSecond>(string commandText, object parameters) where TFirst : class
+        {
+            using (var dbConnection = Connection)
+            {
+                var multipleResult = dbConnection.QueryMultiple(commandText, parameters);
+
+                var result = new Tuple<IEnumerable<TFirst>, IEnumerable<TSecond>>(
+                     multipleResult.Read<TFirst>(), multipleResult.Read<TSecond>());
+
+                dbConnection.Close();
+                return result;
+            }
+        }
     }
 }
