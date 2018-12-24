@@ -1,7 +1,10 @@
-﻿using DapperForDotnet.Dal;
+﻿using DapperForDotnet.Common.Connection.ConnectionModel;
+using DapperForDotnet.Dal;
 using DapperForDotnet.DAL;
 using DapperForDotnet.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,8 +14,8 @@ namespace DapperForDotnet.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-       // GET api/values
-       [HttpGet]
+        // GET api/values
+        [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
             return new string[] { "value1", "value2" };
@@ -64,7 +67,7 @@ namespace DapperForDotnet.Controllers
             CustomerDAL customer = new CustomerDAL();
             var insertInfo = new CustomerInfo() { Name = "test", Age = 30, Creator = "test" };
             var insertList = new List<CustomerInfo>() { insertInfo };
-            var flag = customer.Insert(insertList);
+            var flag = await customer.InsertAsync(insertList);
             return flag;
         }
     }

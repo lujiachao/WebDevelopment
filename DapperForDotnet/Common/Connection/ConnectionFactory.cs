@@ -2,9 +2,9 @@
 using DapperForDotnet.Common.MyEnum;
 using DapperForDotnet.JsonHelper;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System;
 using System.Data;
-using System.Threading.Tasks;
 
 namespace DapperForDotnet.Common.Connection
 {
@@ -43,16 +43,19 @@ namespace DapperForDotnet.Common.Connection
 
             //获取配置进行转换
             var type = JsonConfigurationHelper.GetAppSettingSingle("ComponentDbType");
+            //var type = JsonConfigurationHelper.GetAppSettingSingle("ComponentDbType", Config);
             var dbType = GetDataBaseType(type);
 
             //DefaultDatabase 根据这个配置项获取对应连接字符串
             var database = JsonConfigurationHelper.GetAppSettingSingle("DefaultDatabase");
+            //var database = JsonConfigurationHelper.GetAppSettingSingle("DefaultDatabase",Config);
             if (string.IsNullOrEmpty(database))
             {
                 database = "mysql";//默认配置
             }
             //var jsonConfigurationHelper = JsonConfigurationHelper.GetAppSettings<ConnectionStrings>("ConnectionStrings");
             var strConn = JsonConfigurationHelper.GetAppSettingSingle("ConnectionStrings:" + database);
+            //var strConn = JsonConfigurationHelper.GetAppSettingSingle("ConnectionStrings:" + database,Config);
             switch (dbType)
             {
                 case DatabaseType.SqlServer:

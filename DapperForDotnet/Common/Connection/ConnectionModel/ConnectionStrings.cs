@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace DapperForDotnet.Common.Connection.ConnectionModel
 {
-    public class ConnectionStrings
+    public class ConnectionStrings : IOptions<ConnectionStrings>
     {
+        public ConnectionStrings Value => this;
         public string mysql
         {
             get; set;

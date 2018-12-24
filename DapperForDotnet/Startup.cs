@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DapperForDotnet.Common.Connection;
+﻿using DapperForDotnet.Common.Connection;
+using DapperForDotnet.Common.Connection.ConnectionModel;
 using DapperForDotnet.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using System;
 
 namespace DapperForDotnet
 {
     public class Startup
     {
+        public static string baseDirectory = AppContext.BaseDirectory;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,6 +24,7 @@ namespace DapperForDotnet
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
             services.AddTransient<IConnectionFactory,ConnectionFactory>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

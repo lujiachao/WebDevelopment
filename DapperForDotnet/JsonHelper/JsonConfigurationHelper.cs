@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using DapperForDotnet.Common.Connection.ConnectionModel;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
@@ -33,6 +34,18 @@ namespace DapperForDotnet.JsonHelper
             string appconfig = config[key];
             return appconfig;
 
+        }
+
+        public static T GetAppSettings<T>(IConfiguration config, IOptions<T> options) where T : class, new()
+        {
+            var appconfig = options.Value;
+            return appconfig;
+        }
+
+        public static string GetAppSettingSingle(string key, IConfiguration config)
+        {
+                string appconfig = config[key];
+                return appconfig;
         }
     }
 }

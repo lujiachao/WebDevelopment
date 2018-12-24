@@ -1,7 +1,10 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
 using DapperForDotnet.Common.Connection;
+using DapperForDotnet.Common.Connection.ConnectionModel;
 using DapperForDotnet.DAL;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;

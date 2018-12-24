@@ -142,5 +142,129 @@ namespace MyDapper.SqlPower
                 return await dbConnection.DeleteAllAsync<T>();
             }
         }
+
+        /// <summary>
+        /// 执行SQL返回第一行第一列结果
+        /// </summary>
+        public virtual async Task<TT> ExecuteScalarAsync<TT>(string commandText, object parameters, CommandType commandType = CommandType.Text, int? commandTimeout = default(int?))
+        {
+            using (IDbConnection dbConnection = Connection)
+            {
+                var result = await ExecuteScalarAsync<TT>(dbConnection, commandText, parameters, commandType, commandTimeout);
+                dbConnection.Close();
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// 执行SQL返回第一行第一列的结果 多用于事务
+        /// </summary>
+        public virtual async Task<TT> ExecuteScalarAsync<TT>(IDbConnection dbConnection, string commandText, object parameters, CommandType commandType = CommandType.Text, int? commandTimeout = default(int?))
+        {
+            return await dbConnection.ExecuteScalarAsync<TT>(commandText, parameters, null, commandTimeout, commandType);
+        }
+
+        /// <summary>
+        /// 执行SQL返回影响行数
+        /// </summary>
+        public virtual async Task<int> ExecuteAsync(string commandText, object parameters, CommandType commandType = CommandType.Text, int? commandTimeout = default(int?))
+        {
+            using (var dbConnection = Connection)
+            {
+                var result = await ExecuteAsync(dbConnection, commandText, parameters, commandType, commandTimeout);
+                dbConnection.Close();
+                return result;
+            }
+        }
+
+        ///<summary>
+        ///执行SQL返回影响行数 多用于事务
+        /// </summary>
+        public virtual async Task<int> ExecuteAsync(IDbConnection dbConnection, string commandText, object parameters, CommandType commandType = CommandType.Text, int? commandTimeout = default(int?))
+        {
+            return await dbConnection.ExecuteAsync(commandText, parameters, null, commandTimeout, commandType);
+        }
+
+        /// <summary>
+        /// 查询多行数据
+        /// </summary>
+        public virtual async Task<IEnumerable<TT>> QueryAsync<TT>(string commandText, object parameters, CommandType commandType = CommandType.Text, int? commandTimeout = default(int?)) where TT : class
+        {
+            using (var dbConnection = Connection)
+            {
+                return await QueryAsync<TT>(dbConnection, commandText, parameters, commandType, commandTimeout);
+            }
+        }
+
+
+        /// <summary>
+        /// 查询多行数据,多用于事务
+        /// </summary>
+        public virtual async Task<IEnumerable<TT>> QueryAsync<TT>(IDbConnection dbConnection, string commandText, object parameters, CommandType commandType = CommandType.Text, int? commandTimeout = null) where TT : class
+        {
+            var result = await dbConnection.QueryAsync<TT>(commandText, parameters, null, commandTimeout: commandTimeout, commandType: commandType);
+            dbConnection.Close();
+            return result;
+        }
+
+        ///<summary>
+        /// 查询单条记录 (查询出多条会抛出异常，需要处理)
+        /// </summary>
+        public virtual async Task<TT> QueryOneAsync<TT>(string commandText, object parameters, CommandType commandType = CommandType.Text, int? commandTimeout = default(int?)) where TT : class
+        {
+            using (var dbConnection = Connection)
+            {
+                var result = await dbConnection.QuerySingleOrDefaultAsync<TT>(commandText, parameters, null, commandTimeout, commandType);
+                dbConnection.Close();
+                return result;
+            }
+        }
+
+        ///<summary>
+        /// 查询单条记录 (查询出多条会抛出异常，需要处理)多用于数据库
+        /// </summary>
+        public virtual async Task<TT> QueryOneAsync<TT>(IDbConnection dbConnection, string commandText, object parameters, CommandType commandType = CommandType.Text, int? commandTimeout = default(int?)) where TT : class
+        {
+            var result = await dbConnection.QuerySingleOrDefaultAsync<TT>(commandText, parameters, null, commandTimeout, commandType);
+            return result;
+        }
+
+        /// <summary>
+        /// 批量数据插入操作
+        /// </summary>
+        public virtual async Task<int> BatchInsertAsync<TT>(string commandText, IEnumerable<TT> sons) where TT : class
+        {
+            using (var dbConnection = Connection)
+            {
+                var result = await BatchInsertAsync<TT>(dbConnection, commandText, sons);
+                dbConnection.Close();
+                return result;
+            }
+        }
+
+        /// <summary>
+        /// 批量数据插入操作 多用于事务
+        /// </summary>
+        public virtual async Task<int> BatchInsertAsync<TT>(IDbConnection dbConnection, string commandText, IEnumerable<TT> sons) where TT : class
+        {
+            return await dbConnection.ExecuteAsync(commandText, sons);
+        }
+
+        /// <summary>
+        /// 返回多组数据结果
+        /// </summary>
+        public virtual async Task<Tuple<IEnumerable<TFirst>, IEnumerable<TSecond>>> FindMultipleAsync<TFirst, TSecond>(string commandText, object parameters) where TFirst : class
+        {
+            using (var dbConnection = Connection)
+            {
+                var multipleResult = await dbConnection.QueryMultipleAsync(commandText, parameters);
+
+                var result = new Tuple<IEnumerable<TFirst>, IEnumerable<TSecond>>(
+                     multipleResult.Read<TFirst>(), multipleResult.Read<TSecond>());
+
+                dbConnection.Close();
+                return result;
+            }
+        }
     }
 }
