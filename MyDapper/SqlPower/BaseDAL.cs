@@ -186,5 +186,17 @@ namespace MyDapper.SqlPower
             }
             return result;
         }
+
+        ///<summary>
+        ///执行select语句
+        /// </summary>
+        public T SelectString<T>(string sql)
+        {
+            using (IDbConnection dbConnection = Connection)
+            {
+                var result = dbConnection.QueryFirst<T>(sql);
+                return result;
+            }
+        }
     }
 }
