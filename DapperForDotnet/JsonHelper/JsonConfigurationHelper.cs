@@ -42,7 +42,7 @@ namespace DapperForDotnet.JsonHelper
             return appconfig;
         }
 
-        public static string GetAppSettingSingle(string key, IConfiguration config)
+        public static string GetAppSettingSingle(IConfiguration config,string key)
         {
                 string appconfig = config[key];
                 return appconfig;
