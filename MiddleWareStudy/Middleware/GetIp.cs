@@ -12,7 +12,6 @@ namespace MiddleWareStudy.Middleware
         public async Task WriteIp(HttpContext httpContext, ILogger logger)
         {
             string ip = httpContext.Connection.RemoteIpAddress.ToString();
-
             logger.LogInformation($"User IP:{ip}");
         }
     }

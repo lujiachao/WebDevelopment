@@ -53,5 +53,15 @@ namespace PrivilegeManagement.Controllers
             var flag = customer.Insert(insertList);
             return flag;
         }
+
+        //[HttpGet]
+
+        //public void SelectObject()
+        //{
+        //    CustomerDAL customer = new CustomerDAL();
+        //    string commandSQL = @"SELECT * FROM T_CUSTOMER WHERE ID = 2";
+        //    CustomerInfo customerInfo = customer.SelectString<CustomerInfo>(commandSQL);
+        //    int A = 1;
+        //}
     }
 }
