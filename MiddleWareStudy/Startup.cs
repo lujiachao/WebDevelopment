@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MiddleWareStudy.DIContainer;
+using MiddleWareStudy.LoggersMiddleware;
 using MiddleWareStudy.Middleware;
+using System;
 
 namespace MiddleWareStudy
 {
@@ -22,6 +24,7 @@ namespace MiddleWareStudy
         {
             services.AddSingleton(Configuration);
             services.AddTransient<IPlayGame, NBPlayGame>();
+            services.AddScoped<DoSomething>();
             services.AddTransient<IDemoService, DemoService1>();
             services.AddTransient<IDemoService, DemoSwevice2>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -29,14 +32,16 @@ namespace MiddleWareStudy
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,DoSomething thing)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseRequestIP(); //使用中间件
+                Console.WriteLine(thing.GetMessage());
                 app.UseMiddleware<TestMiddleware>();
                 app.UseMiddleware<DemoMiddleware>();
+                app.UseMiddleware<RequestLogMiddleware>();
             }
             else
             {
