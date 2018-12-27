@@ -2,8 +2,10 @@
 using DapperForDotnet.Common.MyEnum;
 using DapperForDotnet.JsonHelper;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
+using System.Configuration;
 using System.Data;
 
 namespace DapperForDotnet.Common.Connection
@@ -39,11 +41,12 @@ namespace DapperForDotnet.Common.Connection
         ///<return>IDbConnection</return> 
         public IDbConnection CreateConnection()
         {
-            IDbConnection connection = null;
-
+            IDbConnection connection = null;;
             //获取配置进行转换
+            //var type = JsonConfigurationHelper.GetAppSettingSingle("ComponentDbType");
+            //IServiceProvider serviceProvider = new ServiceCollection().BuildServiceProvider();
+            //var config = serviceProvider.GetService<IConfiguration>();
             var type = JsonConfigurationHelper.GetAppSettingSingle("ComponentDbType");
-            //var type = JsonConfigurationHelper.GetAppSettingSingle("ComponentDbType", Config);
             var dbType = GetDataBaseType(type);
 
             //DefaultDatabase 根据这个配置项获取对应连接字符串
