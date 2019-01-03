@@ -24,7 +24,7 @@ namespace MiddleWareStudy.Middleware
                 sb.Append($"<br>{sv.Version}<br/>");
             }
             await context.Response.WriteAsync(sb.ToString());
-            await _next.Invoke(context);
+            await _next(context);
         }
     }
 }

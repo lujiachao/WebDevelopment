@@ -27,7 +27,7 @@ namespace MiddleWareStudy.Middleware
             //_logger.LogInformation($"User IP:{ip}");
             GetIp getIp = new GetIp();
             await getIp.WriteIp(context, _logger);
-            await _next.Invoke(context);
+            await _next(context);
         }
     }
 }
