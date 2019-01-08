@@ -51,7 +51,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyDapper.Test", "MyDapper.T
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Loop", "Loop", "{F4FE3518-92B6-41B7-ACEE-B1B39F96EED4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetOrdercodeLoop", "GetOrdercodeLoop\GetOrdercodeLoop.csproj", "{D05CDC88-3247-42B9-943E-DAF8596775F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetOrdercodeLoop", "GetOrdercodeLoop\GetOrdercodeLoop.csproj", "{D05CDC88-3247-42B9-943E-DAF8596775F8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
