@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DapperForDotnet.Dal;
 using Microsoft.AspNetCore.Mvc;
+using PrivilegeManagement.MiddleWare;
 using PrivilegeManagement.Models;
 
 namespace PrivilegeManagement.Controllers
@@ -30,6 +31,7 @@ namespace PrivilegeManagement.Controllers
         [HttpPost]
         public void Post([FromBody] string value)
         {
+            throw new PrivilegeException(400,"测试异常");
         }
 
         // PUT api/values/5

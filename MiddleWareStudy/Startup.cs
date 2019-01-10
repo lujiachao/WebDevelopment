@@ -51,7 +51,6 @@ namespace MiddleWareStudy
                 app.UseHsts();
                 app.UseRequestIP(); //使用中间件
             }
-
             app.UseHttpsRedirection();
             app.UseMvc();
         }

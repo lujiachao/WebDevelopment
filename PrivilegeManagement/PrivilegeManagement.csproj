@@ -9,10 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Loggers\**" />
+    <Content Remove="Loggers\**" />
+    <EmbeddedResource Remove="Loggers\**" />
+    <None Remove="Loggers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Arguments\" />
     <Folder Include="Dispatchs\" />
     <Folder Include="Filters\" />
-    <Folder Include="Loggers\" />
     <Folder Include="MyMvc\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>

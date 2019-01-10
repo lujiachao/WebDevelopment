@@ -16,7 +16,7 @@ namespace PrivilegeManagement.MiddleWare
         /// <summary>
         /// 重构方法
         /// </summary>
-        /// <param name="next"></param>
+        /// <param name="_next"></param>
         public ExceptionHandlerMiddleWare(RequestDelegate next)
         {
             this.next = next;

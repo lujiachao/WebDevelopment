@@ -1,7 +1,7 @@
-﻿using Dapper.Contrib.Extensions;
-using System;
+﻿using System;
+using Dapper.Contrib.Extensions;
 
-namespace MiddleWareStudy.Model
+namespace PrivilegeManagement.Models
 {
     [Table("Http_Request_Log")]
     public class HttpRequestLog

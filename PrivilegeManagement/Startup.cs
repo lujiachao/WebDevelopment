@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MyDapper.Connection;
 using PrivilegeManagement.MiddleWare;
+using PrivilegeManagement.MiddleWare.Logger;
 using Swashbuckle.AspNetCore.Swagger;
 using System.IO;
 
@@ -48,14 +49,15 @@ namespace PrivilegeManagement
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
                 app.UseMiddleware(typeof(ExceptionHandlerMiddleWare));
+                //app.UseDeveloperExceptionPage();
                 #region Swagger
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiHelp V1");
                 });
+                //app.UseMiddleware(typeof(PrivilegeLogMidleware));
                 #endregion
             }
             else
