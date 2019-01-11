@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using DapperForDotnet.Dal;
 using Microsoft.AspNetCore.Mvc;
+using PrivilegeManagement.Common.Enum;
 using PrivilegeManagement.MiddleWare;
 using PrivilegeManagement.Models;
 
@@ -29,7 +31,7 @@ namespace PrivilegeManagement.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult> Post([FromBody] string value)
         {
             throw new PrivilegeException(400,"测试异常");
         }
@@ -47,13 +49,14 @@ namespace PrivilegeManagement.Controllers
         }
 
         [HttpGet]
-        public async Task<bool> InsertOne()
+        public async Task<ActionResult> InsertOne()
         {
+            throw new PrivilegeException(EnumPrivilegeException.测试异常, "测试异常");
             CustomerDAL customer = new CustomerDAL();
             var insertInfo = new CustomerInfo() { Name = "test", Age = 30, Creator = "test" };
             var insertList = new List<CustomerInfo>() { insertInfo };
             var flag = customer.Insert(insertList);
-            return flag;
+            //return flag;
         }
 
         //[HttpGet]

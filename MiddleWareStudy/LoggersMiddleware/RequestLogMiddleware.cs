@@ -50,7 +50,7 @@ namespace MiddleWareStudy.LoggersMiddleware
             var headers = BuildHeader(context.Request.Headers);
             Console.WriteLine("dsadasdas");
             var newResponseBodyStream = new MemoryStream();
-            context.Response.Body = newResponseBodyStream;                                           
+            //context.Response.Body = newResponseBodyStream;                       //绝对不能加，加了就获取不到responsel了，但是不用日志就取不到response
             await _next(context);                                                  //继续执行中间件
             newResponseBodyStream.Seek(0, SeekOrigin.Begin);
             var responseBodyText = new StreamReader(newResponseBodyStream, Encoding.UTF8).ReadToEnd();   //获取请求的response
@@ -72,7 +72,6 @@ namespace MiddleWareStudy.LoggersMiddleware
                 Dissipate = dissipate
             };
             await httpRequestLog.InsertAsync(insertInfo);
-
         }
 
         public virtual string BuildHeader(IHeaderDictionary keyValuePairs)

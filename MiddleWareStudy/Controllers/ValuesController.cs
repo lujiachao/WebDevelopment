@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MiddleWareStudy.Middleware;
 
 namespace MiddleWareStudy.Controllers
 {
@@ -14,6 +15,7 @@ namespace MiddleWareStudy.Controllers
         [HttpGet]
         public ActionResult<string> Get()
         {
+            throw new PrivilegeException(400, "测试异常");
             return "dasdasdasd";
         }
 

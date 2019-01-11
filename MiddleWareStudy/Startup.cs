@@ -39,11 +39,12 @@ namespace MiddleWareStudy
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseRequestIP(); //使用中间件
-                Console.WriteLine(thing.GetMessage());
+                //app.UseRequestIP(); //使用中间件
+                //Console.WriteLine(thing.GetMessage());
                 //app.UseMiddleware<TestMiddleware>();
                 //app.UseMiddleware<DemoMiddleware>();
                 app.UseMiddleware<RequestLogMiddleware>();
+                app.UseMiddleware<ExceptionHandlerMiddleWare>();
                 //app.UseMiddleware<TestMiddlewareNext>();
             }
             else
@@ -51,7 +52,7 @@ namespace MiddleWareStudy
                 app.UseHsts();
                 app.UseRequestIP(); //使用中间件
             }
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

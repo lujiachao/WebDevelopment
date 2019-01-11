@@ -40,8 +40,8 @@ namespace PrivilegeManagement.MiddleWare.Logger
             _timeCreate = DateTime.Now;
             var headers = BuildHeader(context.Request.Headers);
             var newResponseBodyStream = new MemoryStream();
-            context.Response.Body = newResponseBodyStream;
-            await _next(context);
+            //context.Response.Body = newResponseBodyStream;    //bug代码，用了就获取不到接口返回结果了
+            await _next.Invoke(context);
             newResponseBodyStream.Seek(0, SeekOrigin.Begin);
             var responseBodyText = new StreamReader(newResponseBodyStream, Encoding.UTF8).ReadToEnd();
             _stopwatch.Stop();
@@ -62,7 +62,7 @@ namespace PrivilegeManagement.MiddleWare.Logger
                 Dissipate = dissipate
             };
             // 屏蔽swagger请求，方法有待提升
-            if (uri != "https://localhost:5001/swagger/index.html")
+            if (!uri.Contains("swagger/index.html"))
             {
                 await httpRequestLogDAL.InsertAsync(httpRequestLog);
             }
