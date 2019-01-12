@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MiddleWareStudy.Argu;
 using MiddleWareStudy.Middleware;
+using Newtonsoft.Json;
 
 namespace MiddleWareStudy.Controllers
 {
@@ -15,7 +17,7 @@ namespace MiddleWareStudy.Controllers
         [HttpGet]
         public ActionResult<string> Get()
         {
-            throw new PrivilegeException(400, "测试异常");
+            throw new PrivilegeException(300, "测试异常");
             return "dasdasdasd";
         }
 
@@ -28,8 +30,19 @@ namespace MiddleWareStudy.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<string> Post([FromBody] string value)
         {
+            return value;
+        }
+
+        [HttpPost]
+        public ActionResult<string> PostTest([FromBody] ArguLogin arguLogin)
+        {
+            if (arguLogin == null)
+            {
+                throw new PrivilegeException(001, "Argu is null!Argu is not null");
+            }
+            return JsonConvert.SerializeObject(arguLogin);
         }
 
         // PUT api/values/5

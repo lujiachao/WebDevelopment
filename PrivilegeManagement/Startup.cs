@@ -40,7 +40,7 @@ namespace PrivilegeManagement
                 c.IncludeXmlComments(xmlPath, true); //默认第二个参数是false,这个是controller的注释，记得修改
             });
             #endregion
-            services.AddTransient<IConnectionFactory, ConnectionFactory>();
+            services.AddTransient<IConnectionFactory, ConnectionFactory>();            
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -49,7 +49,6 @@ namespace PrivilegeManagement
         {
             if (env.IsDevelopment())
             {
-                //app.UseDeveloperExceptionPage();
                 #region Swagger
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
@@ -57,13 +56,12 @@ namespace PrivilegeManagement
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiHelp V1");
                 });
                 #endregion
-                app.UseMiddleware(typeof(PrivilegeLogMidleware));
+                app.UseMiddleware(typeof(RequestLoggingMiddleware));
                 app.UseMiddleware(typeof(ExceptionHandlerMiddleWare));
 
             }
             else
             {
-                //app.UseMiddleware(typeof(ExceptionHandlerMiddleWare));
                 app.UseHsts();
                 #region Swagger
                 app.UseSwagger();
@@ -72,9 +70,9 @@ namespace PrivilegeManagement
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiHelp V1");
                 });
                 #endregion
+                app.UseMiddleware(typeof(RequestLoggingMiddleware));
                 app.UseMiddleware(typeof(ExceptionHandlerMiddleWare));
             }
-            //app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

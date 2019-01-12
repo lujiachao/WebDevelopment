@@ -19,6 +19,7 @@ namespace PrivilegeManagement.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            throw new PrivilegeException(400, "测试异常");
             return new string[] { "value1", "value2" };
         }
 

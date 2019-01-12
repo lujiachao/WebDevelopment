@@ -16,7 +16,8 @@ namespace MiddleWareStudy.LoggersMiddleware
     {
         private readonly RequestDelegate _next; //定义请求委托
         private readonly ILogger _logger; //定义日志
-        private StreamReader streamReader;
+        private StreamReader _streamReaderRequest;
+        private MemoryStream _streamReaderResponse;
 
 
         public RequestLogMiddleware(RequestDelegate next)
@@ -28,14 +29,14 @@ namespace MiddleWareStudy.LoggersMiddleware
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            streamReader = new StreamReader(context.Request.Body);
+            _streamReaderRequest = new StreamReader(context.Request.Body);
             string remoteAddress = context.Connection.RemoteIpAddress.ToString();
             if (remoteAddress == "::1")
             {
                 remoteAddress = "127.0.0.1";
             }
             string forwarderAddress = context.Request.Headers["X-Forwarded-For"];
-            string requestStr = await streamReader.ReadToEndAsync();
+            string requestStr = await _streamReaderRequest.ReadToEndAsync();
             StringBuilder sb = new StringBuilder();
             string host = context.Request.Host.ToString();
             sb.Append($"1.{context.Request.Host.ToString()}/n/r");                 //主机地址
@@ -48,12 +49,13 @@ namespace MiddleWareStudy.LoggersMiddleware
             sb.Append($"6.用户id或者标识/n/r");                                    //用户id或者标识
             DateTime timeCreate = DateTime.Now;                                    //请求时间
             var headers = BuildHeader(context.Request.Headers);
-            Console.WriteLine("dsadasdas");
             var newResponseBodyStream = new MemoryStream();
-            //context.Response.Body = newResponseBodyStream;                       //绝对不能加，加了就获取不到responsel了，但是不用日志就取不到response
+            context.Response.Body = newResponseBodyStream;                       //绝对不能加，加了就获取不到responsel了，但是不用日志就取不到response,不加的话，日志获取不到response
+            
             await _next(context);                                                  //继续执行中间件
             newResponseBodyStream.Seek(0, SeekOrigin.Begin);
             var responseBodyText = new StreamReader(newResponseBodyStream, Encoding.UTF8).ReadToEnd();   //获取请求的response
+
             stopwatch.Stop();
             var dissipate = stopwatch.ElapsedMilliseconds;
             HttpRequestLogDAL httpRequestLog = new HttpRequestLogDAL();

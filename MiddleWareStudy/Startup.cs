@@ -38,12 +38,13 @@ namespace MiddleWareStudy
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
                 //app.UseRequestIP(); //使用中间件
                 //Console.WriteLine(thing.GetMessage());
                 //app.UseMiddleware<TestMiddleware>();
                 //app.UseMiddleware<DemoMiddleware>();
-                app.UseMiddleware<RequestLogMiddleware>();
+                //app.UseMiddleware<RequestLogMiddleware>();
+                app.UseMiddleware<RequestLoggingMiddleware>();
                 app.UseMiddleware<ExceptionHandlerMiddleWare>();
                 //app.UseMiddleware<TestMiddlewareNext>();
             }
