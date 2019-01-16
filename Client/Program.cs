@@ -12,6 +12,12 @@ namespace Client
 
         private static async Task MainAsync()
         {
+            //无交互用户访问api
+            await ClientCredentials();
+        }
+
+        private static async Task ClientCredentials()
+        {
             //从元数据中发现端口
             var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
             if (disco.IsError)
@@ -48,5 +54,6 @@ namespace Client
             }
             Console.ReadKey();
         }
+
     }
 }
