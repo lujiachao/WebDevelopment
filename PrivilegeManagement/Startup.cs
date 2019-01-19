@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MyDapper.Connection;
+using PrivilegeManagement.Dispatchs;
 using PrivilegeManagement.MiddleWare;
 using PrivilegeManagement.MiddleWare.Logger;
 using Swashbuckle.AspNetCore.Swagger;
@@ -40,7 +41,8 @@ namespace PrivilegeManagement
                 c.IncludeXmlComments(xmlPath, true); //默认第二个参数是false,这个是controller的注释，记得修改
             });
             #endregion
-            services.AddTransient<IConnectionFactory, ConnectionFactory>();            
+            services.AddTransient<IConnectionFactory, ConnectionFactory>();
+            services.AddTransient<PrivilegeUserDispatch>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
