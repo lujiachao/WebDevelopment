@@ -1,4 +1,5 @@
-﻿using MyDapper.Connection.MyEnum;
+﻿using MyDapper.Connection.ConnectionModel;
+using MyDapper.Connection.MyEnum;
 using MyDapper.JsonHelper;
 using System;
 using System.Collections.Generic;

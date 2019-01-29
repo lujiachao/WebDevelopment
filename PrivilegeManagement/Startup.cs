@@ -26,6 +26,7 @@ namespace PrivilegeManagement
         {
             #region Swagger
             var basePath = Microsoft.DotNet.PlatformAbstractions.ApplicationEnvironment.ApplicationBasePath;
+            services.AddCors(_options => _options.AddPolicy("AllowCors", _builder => _builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info
@@ -43,12 +44,14 @@ namespace PrivilegeManagement
             #endregion
             services.AddTransient<IConnectionFactory, ConnectionFactory>();
             services.AddTransient<PrivilegeUserDispatch>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //接口返回json日期格式控制。
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(options =>{ options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss"; });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            PrivilegeConfigurationProvider.serviceProvider = app.ApplicationServices;
             if (env.IsDevelopment())
             {
                 #region Swagger
