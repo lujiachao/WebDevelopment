@@ -12,6 +12,8 @@ namespace PrivilegeManagement.Models
         [Key]
         public virtual string ID { get; set; }
 
+        public virtual string Password { get; set; }
+
         public virtual string UserName { get; set; }
 
         public virtual string PickName { get; set; }

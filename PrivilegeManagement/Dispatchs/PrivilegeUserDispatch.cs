@@ -1,6 +1,7 @@
 ﻿using PrivilegeManagement.Arguments;
 using PrivilegeManagement.Common.Enum;
 using PrivilegeManagement.MiddleWare;
+using PrivilegeManagement.Models;
 using PrivilegeManagement.SQL;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,15 @@ namespace PrivilegeManagement.Dispatchs
             {
                 throw new PrivilegeException(EnumPrivilegeException.该手机号已存在,"Register Mobilephone is exist");
             }
-
+            await _userLocalDAL.InsertAsync(
+                new UserLocal
+                {
+                    UserName = arguUserRegister.UserName,
+                    Password = arguUserRegister.PassWord,
+                    PickName = arguUserRegister.PickName,
+                    MobilePhone = arguUserRegister.MobilePhone,
+                    Status = 1
+                });
         }
     }
 }
