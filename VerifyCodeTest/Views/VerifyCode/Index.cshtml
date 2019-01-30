@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <figure>
+        <h3>图片验证码</h3>
+        <fieldset>
+            <legend>数字验证码</legend>
+            <img id="nubImg" title="数字验证码" src="/VerifyCode/NumberVerifyCode?random=" alt="vcode" onclick="refresh()" style="cursor:pointer;" />
+        </fieldset>
+        <fieldset>
+            <legend>数字验证码</legend>
+            <img id="abcImg" title="字母验证码" src="/VerifyCode/AbcVerifyCode" alt="vcode" onclick="this.src=this.src+'?'" style="cursor:pointer;" />
+        </fieldset>
+        <fieldset>
+            <legend>混合验证码</legend>
+            <img id="mixImg" title="数字字母混合验证码" src="/VerifyCode/MixVerifyCode" alt="vcode" onclick="this.src=this.src+'?'" style="cursor:pointer;" />
+        </fieldset>
+    </figure>
+
+    <script type="text/javascript">function refresh() {
+            var id = document.getElementById("nubImg");
+            var str = "/VerifyCode/NumberVerifyCode?random=" + Math.random();
+            id.setAttribute("src", str);
+        }</script>
+</body>
+</html>
+
+

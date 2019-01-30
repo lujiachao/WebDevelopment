@@ -8,7 +8,7 @@ namespace PrivilegeManagement.SQL
     {
         public async Task<bool> CheckUsernameExist(string userName)
         {
-            var commandText = $"select count(1) from {EntityHelper.CallName<UserLocal>()} wehere username = @username";
+            var commandText = $"select count(1) from {EntityHelper.CallName<UserLocal>()} where username = @username";
             var count = await ExecuteScalarAsync<int>(commandText, new { username = userName });
             if (count > 0)
             {

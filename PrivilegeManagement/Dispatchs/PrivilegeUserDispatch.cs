@@ -13,6 +13,8 @@ namespace PrivilegeManagement.Dispatchs
     public class PrivilegeUserDispatch : BaseDispatch
     {
         private UserLocalDAL _userLocalDAL = new UserLocalDAL();
+
+        private UserTokenDAL _userTokenDAL = new UserTokenDAL();
         public async Task UserRegistre(ArguUserRegister arguUserRegister)
         {
             if (string.IsNullOrWhiteSpace(arguUserRegister.UserName))
@@ -44,14 +46,23 @@ namespace PrivilegeManagement.Dispatchs
             {
                 throw new PrivilegeException(EnumPrivilegeException.该手机号已存在,"Register Mobilephone is exist");
             }
-            await _userLocalDAL.InsertAsync(
-                new UserLocal
+            var userId = await _userLocalDAL.InsertAsync(
+                             new UserLocal
+                             {
+                                 UserName = arguUserRegister.UserName,
+                                 Password = arguUserRegister.PassWord,
+                                 PickName = arguUserRegister.PickName,
+                                 MobilePhone = arguUserRegister.MobilePhone,
+                                 Status = 1
+                             }, "id");
+
+           await _userTokenDAL.InsertAsync(
+                new UserToken
                 {
-                    UserName = arguUserRegister.UserName,
-                    Password = arguUserRegister.PassWord,
-                    PickName = arguUserRegister.PickName,
-                    MobilePhone = arguUserRegister.MobilePhone,
-                    Status = 1
+                    User_Id = userId,
+                    Token = Guid.NewGuid().ToString(),
+                    Expiration_Time = DateTime.Now.AddDays(3),
+                    Display = 1
                 });
         }
     }

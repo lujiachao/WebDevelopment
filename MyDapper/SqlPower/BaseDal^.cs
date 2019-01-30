@@ -47,8 +47,22 @@ namespace MyDapper.SqlPower
                 await dbConnection.InsertAsync(info);
                 result = true;
             }
-            return await Task<bool>.FromResult(result);
+            return await Task.FromResult(result);
         }
+
+        /// <summary>
+        /// 插入指定对象到数据库中,返回插入数据id,重载了insertasync方法,可以优化的方法。
+        /// </summary>
+        /// <param name="info">指定的对象</param>
+        /// <returns name="id">返回插入数据的id</returns>
+        public virtual async Task<int> InsertAsync(T info,string id)
+        {
+            using (IDbConnection dbConnection = Connection)
+            {
+                return await dbConnection.InsertAsync(info);
+            }
+        }
+
 
         /// <summary>
         /// 插入指定对象集合到数据库中

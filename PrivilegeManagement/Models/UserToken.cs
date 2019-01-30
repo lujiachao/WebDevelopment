@@ -10,7 +10,9 @@ namespace PrivilegeManagement.Models
     public class UserToken
     {
         [Key]
-        public virtual string ID { get; set; }
+        public virtual int ID { get; set; }
+
+        public virtual int User_Id { get; set; }
 
         public virtual string Token { get; set; }
 

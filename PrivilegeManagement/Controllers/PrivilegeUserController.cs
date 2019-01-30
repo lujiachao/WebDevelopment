@@ -24,7 +24,7 @@ namespace PrivilegeManagement.Controllers
             {
                 throw new PrivilegeException((int)EnumPrivilegeException.入参为空,"Argument is null,please check Argu");
             }
-
+            await _privilegeUserDispatch.UserRegistre(arguUserRegister);
             return Successed(null);
         }
     }
