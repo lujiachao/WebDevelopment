@@ -8,7 +8,6 @@ namespace PrivilegeManagement
         public static void AddDispatch(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddSingleton(typeof(PrivilegeUserDispatch));
-            serviceCollection.AddSingleton(typeof(UserDispatch));
         }
     }
 }
