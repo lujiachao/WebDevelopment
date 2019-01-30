@@ -42,7 +42,7 @@ namespace PrivilegeManagement
             });
             #endregion
             services.AddTransient<IConnectionFactory, ConnectionFactory>();
-            services.AddTransient<PrivilegeUserDispatch>();
+            services.AddDispatch();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
