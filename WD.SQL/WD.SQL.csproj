@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
@@ -13,8 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gaea.MySql\Gaea.MySql.csproj" />
-    <ProjectReference Include="..\Gaea\Gaea.csproj" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

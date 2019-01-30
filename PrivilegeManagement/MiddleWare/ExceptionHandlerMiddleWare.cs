@@ -48,7 +48,7 @@ namespace PrivilegeManagement.MiddleWare
 
             if (exception is PrivilegeException)
             {
-                await response.WriteAsync(JsonConvert.SerializeObject(new ZeusResultData()
+                await response.WriteAsync(JsonConvert.SerializeObject(new ResultDataException()
                 {
                     Code = ((PrivilegeException)exception).Code,
                     Message = exception.Message,
@@ -56,7 +56,7 @@ namespace PrivilegeManagement.MiddleWare
             }
             else if (exception is Exception)
             {
-                await response.WriteAsync(JsonConvert.SerializeObject(new ZeusResultData()
+                await response.WriteAsync(JsonConvert.SerializeObject(new ResultDataException()
                 {
                     Code = (int)ResultStatusCode.UnknowError,
                     Message = exception.Message,

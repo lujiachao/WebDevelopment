@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PrivilegeManagement.Results
+namespace PrivilegeManagement.Arguments
 {
-    public class BaseResult
+    public class BaseArgument
     {
     }
 }
