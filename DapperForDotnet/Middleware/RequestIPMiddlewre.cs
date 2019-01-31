@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
-namespace DapperForDotnet.Middleware
+namespace RedisLibraryTest.Middleware
 {
     /// <summary>
     /// 请求IP中间件

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace DapperForDotnet.DAL
+namespace RedisLibraryTest.DAL
 {
     public static class EntityHelper
     {

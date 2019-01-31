@@ -1,14 +1,14 @@
-﻿using DapperForDotnet.Common.Connection.ConnectionModel;
-using DapperForDotnet.Dal;
-using DapperForDotnet.DAL;
-using DapperForDotnet.Models;
+﻿using RedisLibraryTest.Common.Connection.ConnectionModel;
+using RedisLibraryTest.Dal;
+using RedisLibraryTest.DAL;
+using RedisLibraryTest.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DapperForDotnet.Controllers
+namespace RedisLibraryTest.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

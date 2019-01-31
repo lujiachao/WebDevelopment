@@ -1,6 +1,6 @@
-﻿using DapperForDotnet.Common.Connection.ConnectionModel;
-using DapperForDotnet.Common.MyEnum;
-using DapperForDotnet.JsonHelper;
+﻿using RedisLibraryTest.Common.Connection.ConnectionModel;
+using RedisLibraryTest.Common.MyEnum;
+using RedisLibraryTest.JsonHelper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -8,7 +8,7 @@ using System;
 using System.Configuration;
 using System.Data;
 
-namespace DapperForDotnet.Common.Connection
+namespace RedisLibraryTest.Common.Connection
 {
     public class ConnectionFactory : IConnectionFactory
     {

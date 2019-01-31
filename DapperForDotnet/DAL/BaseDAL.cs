@@ -1,15 +1,15 @@
 ﻿using Dapper;
 using Dapper.Contrib.Extensions;
-using DapperForDotnet.Common.Connection;
-using DapperForDotnet.Common.Connection.ConnectionModel;
-using DapperForDotnet.DAL;
+using RedisLibraryTest.Common.Connection;
+using RedisLibraryTest.Common.Connection.ConnectionModel;
+using RedisLibraryTest.DAL;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 
-namespace DapperForDotnet.Dal
+namespace RedisLibraryTest.Dal
 {
     /// <summary>
     /// 数据库访问基类 同步方法

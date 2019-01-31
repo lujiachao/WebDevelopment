@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace DapperForDotnet.Dal
+namespace RedisLibraryTest.Dal
 {
     public partial class BaseDAL<T> where T : class
     {

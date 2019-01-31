@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DapperForDotnet.Models
+namespace RedisLibraryTest.Models
 {
     [Table("T_Customer")]
     public class CustomerInfo

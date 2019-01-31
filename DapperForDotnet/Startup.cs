@@ -1,6 +1,6 @@
-﻿using DapperForDotnet.Common.Connection;
-using DapperForDotnet.Common.Connection.ConnectionModel;
-using DapperForDotnet.Middleware;
+﻿using RedisLibraryTest.Common.Connection;
+using RedisLibraryTest.Common.Connection.ConnectionModel;
+using RedisLibraryTest.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
 
-namespace DapperForDotnet
+namespace RedisLibraryTest
 {
     public class Startup
     {

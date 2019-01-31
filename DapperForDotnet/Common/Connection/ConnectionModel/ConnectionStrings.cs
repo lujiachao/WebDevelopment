@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DapperForDotnet.Common.Connection.ConnectionModel
+namespace RedisLibraryTest.Common.Connection.ConnectionModel
 {
     public class ConnectionStrings : IOptions<ConnectionStrings>
     {

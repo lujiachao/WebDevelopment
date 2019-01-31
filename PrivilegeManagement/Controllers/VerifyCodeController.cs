@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using PrivilegeManagement.Results;
 using PrivilegeManagement.VerifyCode;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -21,6 +22,7 @@ namespace PrivilegeManagement.Controllers
         /// 数字验证码
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         public FileContentResult NumberVerifyCode()
         {
             string code = VerifyCodeHelper.GetSingleObj().CreateVerifyCode(VerifyCodeHelper.VerifyCodeType.NumberVerifyCode);
@@ -32,6 +34,7 @@ namespace PrivilegeManagement.Controllers
         /// 字母验证码
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         public FileContentResult AbcVerifyCode()
         {
             string code = VerifyCodeHelper.GetSingleObj().CreateVerifyCode(VerifyCodeHelper.VerifyCodeType.AbcVerifyCode);
@@ -46,6 +49,7 @@ namespace PrivilegeManagement.Controllers
         /// 混合验证码
         /// </summary>
         /// <returns></returns>
+        [HttpGet]
         public FileContentResult MixVerifyCode()
         {
             string code = VerifyCodeHelper.GetSingleObj().CreateVerifyCode(VerifyCodeHelper.VerifyCodeType.MixVerifyCode);
@@ -53,6 +57,16 @@ namespace PrivilegeManagement.Controllers
             MemoryStream stream = new MemoryStream();
             bitmap.Save(stream, ImageFormat.Gif);
             return File(stream.ToArray(), "image/gif");
+        }
+
+        /// <summary>
+        /// 核对验证码
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<PrivilegeBaseResult> CheckVerifyCode(string code)
+        {
+
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using DapperForDotnet.Common.MyEnum;
+﻿using RedisLibraryTest.Common.MyEnum;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DapperForDotnet.Common.Connection
+namespace RedisLibraryTest.Common.Connection
 {
     public interface IConnectionFactory
     {
