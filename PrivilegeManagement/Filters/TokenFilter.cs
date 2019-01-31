@@ -44,7 +44,6 @@ namespace PrivilegeManagement.Filters
                     throw new PrivilegeException((int)EnumPrivilegeException.未查询到该身份,"token not found");
                 }
             }
-            var userDispatch = context.HttpContext.RequestServices.GetRequiredService<UserDispatch>();
             var apiController = context.Controller as PrivilegeController;
         }
 
