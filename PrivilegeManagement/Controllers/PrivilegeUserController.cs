@@ -27,5 +27,14 @@ namespace PrivilegeManagement.Controllers
             await _privilegeUserDispatch.UserRegistre(arguUserRegister);
             return Successed(null);
         }
+
+        [HttpPost]
+        public async Task<PrivilegeBaseResult> UserLogin([FromBody]ArguUserLogin arguUserLogin)
+        {
+            if (arguUserLogin == null)
+            {
+                throw new PrivilegeException((int)EnumPrivilegeException.入参为空, "Argument is null,please check Argu");
+            }
+        }
     }
 }
