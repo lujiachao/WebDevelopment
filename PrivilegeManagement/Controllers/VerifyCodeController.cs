@@ -59,14 +59,5 @@ namespace PrivilegeManagement.Controllers
             return File(stream.ToArray(), "image/gif");
         }
 
-        /// <summary>
-        /// 核对验证码
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        public async Task<PrivilegeBaseResult> CheckVerifyCode(string code)
-        {
-
-        }
     }
 }
