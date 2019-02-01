@@ -14,7 +14,7 @@ namespace PrivilegeManagement.Common.Regular
         /// </summary>
         public static bool IsCorrect(string mobilePhone)
         {
-            return Regex.IsMatch(mobilePhone,@"^[1][3,4,5,7,8][0-9]{9}");
+            return Regex.IsMatch(mobilePhone,@"^[1][3,4,5,7,8][0-9]{9}$");
         }
         #endregion
     }

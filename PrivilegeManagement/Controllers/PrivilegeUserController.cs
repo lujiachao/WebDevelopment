@@ -38,11 +38,11 @@ namespace PrivilegeManagement.Controllers
             }
             if (Regular.IsCorrect(arguMobilePhone.MobilePhone))
             {
-                return Successed(arguMobilePhone);
+                return Successed(arguMobilePhone, "mobile phone number is true");
             }
             else
             {
-                return Failed(arguMobilePhone);
+                return Failed(arguMobilePhone, "Incorrect format of mobile phone number");
             }
         }
 
