@@ -2,6 +2,7 @@
 using PrivilegeManagement.Common.Enum;
 using PrivilegeManagement.MiddleWare;
 using PrivilegeManagement.Models;
+using PrivilegeManagement.Results;
 using PrivilegeManagement.SQL;
 using System;
 using System.Collections.Generic;
@@ -64,6 +65,38 @@ namespace PrivilegeManagement.Dispatchs
                     Expiration_Time = DateTime.Now.AddDays(3),
                     Display = 1
                 });
+        }
+
+        public async Task<PrivilegeBaseResult> UserLogin(ArguUserLogin arguUserLogin)
+        {
+            if (string.IsNullOrWhiteSpace(arguUserLogin.UserName))
+            {
+                throw new PrivilegeException(EnumPrivilegeException.登录用户名为空,"Login Username is null");
+            }
+
+            if (string.IsNullOrWhiteSpace(arguUserLogin.PassWord))
+            {
+                throw new PrivilegeException(EnumPrivilegeException.登录密码为空,"Login Password is null");
+            }
+            var userLocal = await _userLocalDAL.CheckUserLogin(arguUserLogin.UserName);
+            if (userLocal == null)
+            {
+                throw new PrivilegeException(EnumPrivilegeException.该用户不存在,"Username is not exist");
+            }
+            if (arguUserLogin.PassWord != userLocal.passWord)
+            {
+                throw new PrivilegeException(EnumPrivilegeException.登录密码错误,"Login password error");
+            }
+            if (userLocal.status == 0)
+            {
+                throw new PrivilegeException(EnumPrivilegeException.该用户不可用,"User status is false");
+            }
+            var userInfo = await _userLocalDAL.GetUserInfo(arguUserLogin.UserName);
+            if (DateTime.Compare(userInfo.expirationTime,DateTime.Now) <= 0)
+            {
+               await _userTokenDAL.UpdateToken(Guid.NewGuid().ToString(),DateTime.Now, userInfo.id);
+            }
+            return await _userLocalDAL.GetUserInfo(arguUserLogin.UserName);
         }
     }
 }

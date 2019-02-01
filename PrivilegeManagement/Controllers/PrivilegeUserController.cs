@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using PrivilegeManagement.Arguments;
 using PrivilegeManagement.Common.Enum;
+using PrivilegeManagement.Common.Regular;
 using PrivilegeManagement.Dispatchs;
 using PrivilegeManagement.MiddleWare;
 using PrivilegeManagement.Results;
@@ -29,12 +30,30 @@ namespace PrivilegeManagement.Controllers
         }
 
         [HttpPost]
+        public async Task<PrivilegeBaseResult> CheckMobilePhone([FromBody]ArguMobilePhone arguMobilePhone)
+        {
+            if (arguMobilePhone == null)
+            {
+                throw new PrivilegeException((int)EnumPrivilegeException.入参为空,"Argument is null,please check Argu");
+            }
+            if (Regular.IsCorrect(arguMobilePhone.MobilePhone))
+            {
+                return Successed(arguMobilePhone);
+            }
+            else
+            {
+                return Failed(arguMobilePhone);
+            }
+        }
+
+        [HttpPost]
         public async Task<PrivilegeBaseResult> UserLogin([FromBody]ArguUserLogin arguUserLogin)
         {
             if (arguUserLogin == null)
             {
                 throw new PrivilegeException((int)EnumPrivilegeException.入参为空, "Argument is null,please check Argu");
             }
+            return await _privilegeUserDispatch.UserLogin(arguUserLogin);
         }
     }
 }

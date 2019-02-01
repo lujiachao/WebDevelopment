@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PrivilegeManagement.Arguments
 {
-    public class ArguUserLogin
+    public class ArguUserLogin : BaseArgument
     {
         public string UserName
         {
