@@ -36,7 +36,6 @@ namespace RedisLibrary
             return redisValue.HasValue ? Deserialize<T>(redisValue) : default(T);
         }
 
-        //ljc
         public virtual async Task<T> GetOrDefault<T>(string key)
         {
             var redisValue = await _database.StringGetAsync(GetLocalizedKey(key));

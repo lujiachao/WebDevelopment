@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyDapper\MyDapper.csproj" />
+    <ProjectReference Include="..\RedisLibrary\RedisLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>

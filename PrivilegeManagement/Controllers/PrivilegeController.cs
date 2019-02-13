@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using PrivilegeManagement.Common.Enum;
 using PrivilegeManagement.Results;
+using RedisLibrary;
 using System;
 
 namespace PrivilegeManagement.Controllers
@@ -14,6 +14,13 @@ namespace PrivilegeManagement.Controllers
         public const string DefaultDateStringFormat = "yyyy-MM-dd";
 
         public const string DefaultTimeStringFormat = "yyyy-MM-dd HH:mm:ss";
+
+        public static Lazy<RedisCache> _redisCacheClient = new Lazy<RedisCache>(_radisCacheMethod);
+
+        public static RedisCache _radisCacheMethod()
+        {
+            return new RedisCache("test_code", new RedisCacheDatabaseProvider(), new RedisCacheSerializer());
+        }
 
         //Nonaction 这并不是一个控制器，防止框架认错
         [NonAction]
