@@ -98,5 +98,17 @@ namespace PrivilegeManagement.Dispatchs
             }
             return await _userLocalDAL.GetUserInfo(arguUserLogin.UserName);
         }
+
+        public async Task<PrivilegeBaseResult> CatchUserList(ArguCatchUser arguCatchUser)
+        {
+            if (arguCatchUser.id > 0)
+            {
+                var resultCatchUser = await _userLocalDAL.FindByIDAsync(arguCatchUser.id);
+            }
+            else
+            {
+                var resultCatchUser = await _userLocalDAL.GetAllAsync();
+            }
+        }
     }
 }

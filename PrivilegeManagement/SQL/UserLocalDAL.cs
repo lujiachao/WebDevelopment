@@ -1,8 +1,7 @@
 ﻿using MyDapper.SqlPower;
-using PrivilegeManagement.Common.Enum;
-using PrivilegeManagement.MiddleWare;
 using PrivilegeManagement.Models;
 using PrivilegeManagement.Results;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PrivilegeManagement.SQL
@@ -49,6 +48,13 @@ namespace PrivilegeManagement.SQL
             var commandText = $"select * from {EntityHelper.CallName<UserLocal>()} A left join {EntityHelper.CallName<UserToken>()} B ON A.id = B.user_id where A.username = @username";
             var resultUserInfo = await QueryOneAsync<ResultUserInfo>(commandText, new { userName});
             return resultUserInfo;
+        }
+
+        public async Task<IEnumerable<UserLocal>> GatchUserListByID(int id)
+        {
+            var commandText = $"select * from {EntityHelper.CallName<UserLocal>()} where id = @id";
+            var resultUserLocal = await QueryAsync<UserLocal>(commandText, new { id });
+            return resultUserLocal;
         }
     }
 }
