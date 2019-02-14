@@ -104,10 +104,12 @@ namespace PrivilegeManagement.Dispatchs
             if (arguCatchUser.id > 0)
             {
                 var resultCatchUser = await _userLocalDAL.FindByIDAsync(arguCatchUser.id);
+                return Successed(resultCatchUser,"用户信息");
             }
             else
             {
                 var resultCatchUser = await _userLocalDAL.GetAllAsync();
+                return Successed(resultCatchUser, "用户列表");
             }
         }
     }
