@@ -1,4 +1,5 @@
 ﻿using MyDapper.SqlPower;
+using PrivilegeManagement.Arguments;
 using PrivilegeManagement.Models;
 using PrivilegeManagement.Results;
 using System.Collections.Generic;
@@ -55,6 +56,31 @@ namespace PrivilegeManagement.SQL
             var commandText = $"select * from {EntityHelper.CallName<UserLocal>()} where id = @id";
             var resultUserLocal = await QueryAsync<UserLocal>(commandText, new { id });
             return resultUserLocal;
+        }
+
+        public async Task<IEnumerable<UserLocal>> UserList(ArguUserList arguUserList)
+        {
+            int limitBefore = (arguUserList.Page - 1) * arguUserList.Limit;
+            string wheresql = $" where 1 = 1";
+            if (!string.IsNullOrWhiteSpace(arguUserList.UserName))
+            {
+                wheresql += $" and username like '%{arguUserList.UserName}%' ";
+            }
+            if (!string.IsNullOrWhiteSpace(arguUserList.Mobilephone))
+            {
+                wheresql += $" and mobnilephone = '{arguUserList.Mobilephone}' ";
+            }
+            if (!string.IsNullOrWhiteSpace(arguUserList.PickName))
+            {
+                wheresql += $" and pickname like '{arguUserList.PickName}'";
+            }
+            if (arguUserList.Status != null)
+            {
+                wheresql += $" and status = {arguUserList.Status}";
+            }
+            var commandText = $"select * from {EntityHelper.CallName<UserLocal>()} {wheresql} limit {limitBefore},{arguUserList.Limit}";
+            var userList = await QueryAsync<UserLocal>(commandText , null);
+            return userList;
         }
     }
 }

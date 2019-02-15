@@ -65,5 +65,15 @@ namespace PrivilegeManagement.Controllers
             }
             return await _privilegeUserDispatch.CatchUserList(arguCatchUser);
         }
+
+        [HttpPost]
+        public async Task<PrivilegeBaseResult> UserList([FromBody]ArguUserList arguUserList)
+        {
+            if (arguUserList == null)
+            {
+                throw new PrivilegeException((int)EnumPrivilegeException.入参为空, "Argument is null,please check Argu");
+            }
+            return await _privilegeUserDispatch.UserList(arguUserList);
+        }
     }
 }

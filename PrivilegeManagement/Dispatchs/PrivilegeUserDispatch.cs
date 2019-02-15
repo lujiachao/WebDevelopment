@@ -112,5 +112,18 @@ namespace PrivilegeManagement.Dispatchs
                 return Successed(resultCatchUser, "用户列表");
             }
         }
+
+        public async Task<PrivilegeBaseResult> UserList(ArguUserList arguUserList)
+        {
+            var userList = await _userLocalDAL.UserList(arguUserList);
+            var userListResult = new PageList<UserLocal>()
+            {
+                data = userList.ToList(),
+                code = 200,
+                msg = "用户列表",
+                count = userList.Count()
+            };
+            return userListResult;
+        }
     }
 }
