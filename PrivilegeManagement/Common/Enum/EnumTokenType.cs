@@ -10,9 +10,7 @@ namespace PrivilegeManagement.Common.Enum
     /// </summary>
     public enum EnumTokenType
     {
-        webSite = 1,
-        H5 = 2,
-        App = 3,
-        Client = 4
+        admin = 1,
+        user = 2
     }
 }

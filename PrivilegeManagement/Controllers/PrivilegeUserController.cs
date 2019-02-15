@@ -5,6 +5,7 @@ using PrivilegeManagement.Arguments;
 using PrivilegeManagement.Common.Enum;
 using PrivilegeManagement.Common.Regular;
 using PrivilegeManagement.Dispatchs;
+using PrivilegeManagement.Filters;
 using PrivilegeManagement.MiddleWare;
 using PrivilegeManagement.Results;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace PrivilegeManagement.Controllers
     [ApiController]
     public class PrivilegeUserController : PrivilegeController
     {
-        private PrivilegeUserDispatch _privilegeUserDispatch = PrivilegeConfigurationProvider.serviceProvider.GetRequiredService<PrivilegeUserDispatch>();
+        private PrivilegeUserDispatch _privilegeUserDispatch = PrivilegeConfigurationProvider.serviceProvider. GetRequiredService<PrivilegeUserDispatch>();
 
         [HttpPost]
         public async Task<PrivilegeBaseResult> UserRegistre([FromBody]ArguUserRegister arguUserRegister)
@@ -74,6 +75,16 @@ namespace PrivilegeManagement.Controllers
                 throw new PrivilegeException((int)EnumPrivilegeException.入参为空, "Argument is null,please check Argu");
             }
             return await _privilegeUserDispatch.UserList(arguUserList);
+        }
+
+        /// <summary>
+        /// token test
+        /// </summary>
+        [HttpPost]
+        [TokenFilter]
+        public async Task<PrivilegeBaseResult> TokenTest()
+        {
+            return Successed(null);
         }
     }
 }

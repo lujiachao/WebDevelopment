@@ -6,6 +6,7 @@ using PrivilegeManagement.Common.Enum;
 using PrivilegeManagement.Controllers;
 using PrivilegeManagement.Dispatchs;
 using PrivilegeManagement.MiddleWare;
+using PrivilegeManagement.SQL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,11 @@ namespace PrivilegeManagement.Filters
         public TokenFilter(EnumTokenType enumTokenType)
         {
             _enumTokenType = enumTokenType;
+        }
+
+        public TokenFilter()
+        {
+
         }
 
 
@@ -43,9 +49,18 @@ namespace PrivilegeManagement.Filters
                 {
                     throw new PrivilegeException((int)EnumPrivilegeException.未查询到该身份,"token not found");
                 }
+                UserTokenDAL userTokenDAL = new UserTokenDAL();
+                var userToken = await userTokenDAL.FindToken(token);
+                if (userToken == null)
+                {
+                    throw new PrivilegeException((int)EnumPrivilegeException.用户身份令牌不存在,"token is error");
+                }
+                if (DateTime.Compare(userToken.Expiration_Time, DateTime.Now) <= 0)
+                {
+                    throw new PrivilegeException((int)EnumPrivilegeException.用户身份令牌过期, "token is expiration");
+                }
+                await next.Invoke();
             }
-            var userDispatch = context.HttpContext.RequestServices.GetRequiredService<PrivilegeUserDispatch>();
-            var apiController = context.Controller as PrivilegeController;
         }
 
         public void OnActionExecuted(ActionExecutedContext context)

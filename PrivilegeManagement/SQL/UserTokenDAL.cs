@@ -12,5 +12,11 @@ namespace PrivilegeManagement.SQL
             var commandText = $"Update {EntityHelper.CallName<UserToken>()} set token = @token, expiration_time = @expiration_time where id = @id";
             await ExecuteAsync(commandText, new { token, expiration_time, id});
         }
+
+        public async Task<UserToken> FindToken(string token)
+        {
+            var commandText = $"Select * from {EntityHelper.CallName<UserToken>()} where token = @token";
+            return await QueryOneAsync<UserToken>(commandText,new { token });
+        }
     }
 }
