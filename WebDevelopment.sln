@@ -75,9 +75,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Epplus", "Epplus", "{7AC438
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EpplusStudyConsole", "EpplusStudyConsole\EpplusStudyConsole.csproj", "{F56CA0AA-DD6C-4E9B-9400-CE66293E699B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransitStudyCore", "MassTransitStudyCore\MassTransitStudyCore.csproj", "{CDCE717A-6911-4957-88AC-9F1821C40664}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransitStudyCore", "MassTransitStudyCore\MassTransitStudyCore.csproj", "{CDCE717A-6911-4957-88AC-9F1821C40664}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MassTransitStudyReciver", "MassTransitStudyReciver\MassTransitStudyReciver.csproj", "{09324F8D-8AAC-4F43-8296-70BACC1374B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MassTransitStudyReciver", "MassTransitStudyReciver\MassTransitStudyReciver.csproj", "{09324F8D-8AAC-4F43-8296-70BACC1374B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Quartz", "Quartz", "{B5105731-7FA8-46B0-ABA5-AA17062448D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuartzStudy", "QuartzStudy\QuartzStudy.csproj", "{7362FEF5-197B-4BB3-B7BF-B69CF49CB391}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -177,6 +181,10 @@ Global
 		{09324F8D-8AAC-4F43-8296-70BACC1374B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09324F8D-8AAC-4F43-8296-70BACC1374B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09324F8D-8AAC-4F43-8296-70BACC1374B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7362FEF5-197B-4BB3-B7BF-B69CF49CB391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7362FEF5-197B-4BB3-B7BF-B69CF49CB391}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7362FEF5-197B-4BB3-B7BF-B69CF49CB391}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7362FEF5-197B-4BB3-B7BF-B69CF49CB391}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -207,6 +215,7 @@ Global
 		{F56CA0AA-DD6C-4E9B-9400-CE66293E699B} = {7AC438C5-9E52-4C9F-8515-5DE36D781495}
 		{CDCE717A-6911-4957-88AC-9F1821C40664} = {9316909A-F8CC-4CB6-82DD-B02D1A8865E9}
 		{09324F8D-8AAC-4F43-8296-70BACC1374B6} = {9316909A-F8CC-4CB6-82DD-B02D1A8865E9}
+		{7362FEF5-197B-4BB3-B7BF-B69CF49CB391} = {B5105731-7FA8-46B0-ABA5-AA17062448D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54B688B2-DE83-4D9C-90EF-3FC7DDFDF9FB}

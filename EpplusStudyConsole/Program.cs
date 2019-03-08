@@ -13,8 +13,8 @@ namespace EpplusStudyConsole
     {
         public static void Main(string[] args)
         {
-            //CreateExcel();
-            CreateCharset();
+            CreateExcel();
+            //CreateCharset();
             Console.ReadKey();
         }
 
