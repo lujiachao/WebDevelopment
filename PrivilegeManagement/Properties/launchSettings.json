@@ -22,7 +22,7 @@
       }
     },
     "PrivilegeManagement": {
-      "commandName": "IIS",
+      "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {

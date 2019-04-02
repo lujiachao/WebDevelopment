@@ -48,7 +48,7 @@ namespace PrivilegeManagement
             #endregion
             services.Configure<RedisConfigurationFromJson>(Configuration.GetSection("RedisConfiguration"));
             services.AddTransient<IConnectionFactory, ConnectionFactory>();
-            services.AddDispatch();
+            services.LoadSingleton();
             //接口返回json日期格式控制。
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(options =>{ options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss"; });
         }

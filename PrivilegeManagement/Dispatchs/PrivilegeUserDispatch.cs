@@ -1,4 +1,5 @@
 ﻿using PrivilegeManagement.Arguments;
+using PrivilegeManagement.AttributeExtension;
 using PrivilegeManagement.Common.Enum;
 using PrivilegeManagement.MiddleWare;
 using PrivilegeManagement.Models;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace PrivilegeManagement.Dispatchs
 {
+    [DIUser((int)EnumTypeDIImport.Transient)]
     public class PrivilegeUserDispatch : BaseDispatch
     {
         private UserLocalDAL _userLocalDAL = new UserLocalDAL();
